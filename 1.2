@@ -1,0 +1,28 @@
+We’ve left containers and a image that won’t be used anymore and are taking space, as docker ps -a and docker images will reveal. Clean the docker daemon from all images and containers.
+Prove that you have completed this part of exercise by delivering the output for docker ps -a and docker images
+
+juhani@juhani-VirtualBox:/home/juhani# docker ps -a
+CONTAINER ID        IMAGE                              COMMAND                  CREATED              STATUS                      PORTS                                NAMES
+612a141ecea1        nginx                              "nginx -g 'daemon of…"   52 seconds ago       Exited (0) 15 seconds ago                                        elated_archimedes
+eb7ca3390834        nginx                              "nginx -g 'daemon of…"   54 seconds ago       Exited (0) 15 seconds ago                                        confident_zhukovsky
+ee6139a8903d        nginx                              "nginx -g 'daemon of…"   About a minute ago   Up 55 seconds               80/tcp                               beautiful_albattani
+juhani@juhani-VirtualBox:/home/juhani# docker stop ee
+ee
+juhani@juhani-VirtualBox:/home/juhani# docker images
+REPOSITORY                  TAG                 IMAGE ID            CREATED             SIZE
+nginx                       latest              4733136e5c3c        33 hours ago        126MB
+juhani@juhani-VirtualBox:/home/juhani# docker rm 61 eb ee
+61
+eb
+ee
+juhani@juhani-VirtualBox:/home/juhani# docker rmi nginx
+Untagged: nginx:latest
+Untagged: nginx@sha256:5411d8897c3da841a1f45f895b43ad4526eb62d3393c3287124a56be49962d41
+Deleted: sha256:4733136e5c3c63c6fea37ebbecd6962ed54c3d1bdded1e82bae972c97d8b8772
+Deleted: sha256:e231305f6f20b8195f5f368b23bb39c43f9bce1dcbcf514d11eb40ad8234388e
+Deleted: sha256:4570d70804cae01cd64e62653e2319b410bbac560793bcfcc9d0c4725ef7f72b
+Deleted: sha256:1c95c77433e8d7bf0f519c9d8c9ca967e2603f0defbf379130d9a841cca2e28e
+juhani@juhani-VirtualBox:/home/juhani# docker images
+REPOSITORY                  TAG                 IMAGE ID            CREATED             SIZE
+
+(There actually were couple of containers left, unrelated to this exercise. I will not print them here)
