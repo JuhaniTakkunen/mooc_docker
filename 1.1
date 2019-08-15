@@ -1,0 +1,33 @@
+"Practice the commands.
+Start 3 containers from image that does not automatically exit, such as nginx, detached.
+Stop 2 of the containers leaving 1 up.
+Prove that you have completed this part of exercise by delivering the output for docker ps -a."
+
+
+juhani@juhani-VirtualBox:/home/juhani# docker run -d nginx
+Unable to find image 'nginx:latest' locally
+latest: Pulling from library/nginx
+1ab2bdfe9778: Pull complete 
+c88f4a4e0a55: Pull complete 
+1a18b1b95ce1: Pull complete 
+Digest: sha256:5411d8897c3da841a1f45f895b43ad4526eb62d3393c3287124a56be49962d41
+Status: Downloaded newer image for nginx:latest
+ee6139a8903d0875898524b6b74d5703ccc9ab104ce3542ef98381ce5a98466b
+juhani@juhani-VirtualBox:/home/juhani# docker run -d nginx
+eb7ca33908348eb6643be54167fa7f470acfc732677022f4587d601ecc388764
+juhani@juhani-VirtualBox:/home/juhani# docker run -d nginx
+612a141ecea19945e6c4109e50f632b7cacffc28a46d8245e946eb7d1dbdb3f6
+juhani@juhani-VirtualBox:/home/juhani# docker ps -a
+CONTAINER ID        IMAGE                              COMMAND                  CREATED             STATUS                      PORTS                                NAMES
+612a141ecea1        nginx                              "nginx -g 'daemon of…"   18 seconds ago      Up 17 seconds               80/tcp                               elated_archimedes
+eb7ca3390834        nginx                              "nginx -g 'daemon of…"   20 seconds ago      Up 19 seconds               80/tcp                               confident_zhukovsky
+ee6139a8903d        nginx                              "nginx -g 'daemon of…"   27 seconds ago      Up 21 seconds               80/tcp                               beautiful_albattani
+juhani@juhani-VirtualBox:/home/juhani# docker stop 61 eb
+61
+eb
+juhani@juhani-VirtualBox:/home/juhani# docker ps -a
+CONTAINER ID        IMAGE                              COMMAND                  CREATED              STATUS                      PORTS                                NAMES
+612a141ecea1        nginx                              "nginx -g 'daemon of…"   52 seconds ago       Exited (0) 15 seconds ago                                        elated_archimedes
+eb7ca3390834        nginx                              "nginx -g 'daemon of…"   54 seconds ago       Exited (0) 15 seconds ago                                        confident_zhukovsky
+ee6139a8903d        nginx                              "nginx -g 'daemon of…"   About a minute ago   Up 55 seconds               80/tcp                               beautiful_albattani
+juhani@juhani-VirtualBox:/home/juhani# 
