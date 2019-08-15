@@ -1,0 +1,33 @@
+Now that we’ve warmed up it’s time to get inside a container while it’s running!
+Start image devopsdockeruh/exec_bash_exercise, it will start a container with clock-like features and create a log. Go inside the container and use tail -f ./logs.txt to follow the logs. Every 15 seconds the clock will send you a “secret message”.
+Submit the secret message and command(s) given as your answer.
+
+docker run devopsdockeruh/exec_bash_exercise
+(node:1) ExperimentalWarning: The fs.promises API is experimental
+Wrote to file /usr/app/logs.txt
+Wrote to file /usr/app/logs.txt
+Wrote to file /usr/app/logs.txt
+Wrote to file /usr/app/logs.txt
+Wrote to file /usr/app/logs.txt
+^CClosing file
+
+docker run -d devopsdockeruh/exec_bash_exercise
+0c80e8322f0727ae4041208021e770d49e07254cb1b9aff9d139075b328e57fe
+
+docker exec -it 0c bash
+root@0c80e8322f07:/usr/app# tail -f ./logs.txt
+Thu, 15 Aug 2019 17:21:09 GMT
+Thu, 15 Aug 2019 17:21:12 GMT
+Thu, 15 Aug 2019 17:21:15 GMT
+Thu, 15 Aug 2019 17:21:18 GMT
+Secret message is:
+"Docker is easy"
+Thu, 15 Aug 2019 17:21:24 GMT
+Thu, 15 Aug 2019 17:21:27 GMT
+Thu, 15 Aug 2019 17:21:30 GMT
+Thu, 15 Aug 2019 17:21:33 GMT
+Secret message is:
+"Docker is easy"
+Thu, 15 Aug 2019 17:21:39 GMT
+^C
+
