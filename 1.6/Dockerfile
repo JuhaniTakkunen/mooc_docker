@@ -1,3 +1,3 @@
 ROM devopsdockeruh/overwrite_cmd_exercise
 
-CMD ["/bin/bash"]
+CMD ["-c"]
