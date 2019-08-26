@@ -1,0 +1,16 @@
+# docker run -p 80:80 devopsdockeruh/ports_exercise
+Unable to find image 'devopsdockeruh/ports_exercise:latest' locally
+latest: Pulling from devopsdockeruh/ports_exercise
+
+...
+
+Status: Downloaded newer image for devopsdockeruh/ports_exercise:latest
+
+> ports_exercise@1.0.0 start /usr/app
+> node index.js
+
+Listening on port 80, this means inside of the container. Use -p to map the port to a port of your local machine.
+
+--- toisessa ikkunassa ---
+# curl localhost:80
+Ports configured correctly!!
