@@ -1,0 +1,4 @@
+docker build -t test-front .
+docker run -p 5000:5000 test-front
+
+--- NOTE: website now runs on http://192.168.1.109:5000/ , localhost will give cross-site error ---
