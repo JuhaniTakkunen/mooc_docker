@@ -1,0 +1,5 @@
+docker run --mount type=bind,source="$(pwd)"/logs.txt,target=/usr/local/www/backend/logs.txt -p 8000:8000 test-backend
+
+--- log file content after two connections
+8/27/2019, 3:23:31 PM: Connection received in root
+8/27/2019, 3:23:31 PM: Connection received in root
