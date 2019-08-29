@@ -2,7 +2,7 @@ Create Python3 environment using Docker. For this, a good startup point is: http
 
 I also included custom requirements for this, lxml, requests and zeep. 
 
-Name of the Docker file: `juhanitakkunen/mooc-python-env`
+Docker image can be found here: https://hub.docker.com/r/juhanitakkunen/mooc-python-env
 
 # run python file
 ```
