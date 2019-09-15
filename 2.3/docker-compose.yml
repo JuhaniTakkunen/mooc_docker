@@ -6,7 +6,7 @@ services:
       ports:
         - 8000:8000
       volumes:
-        - /home/warhol/mooc/2.3/logs.txt:/usr/local/www/backend/logs.txt
+        - ${PWD}/logs.txt:/usr/local/www/backend/logs.txt
 
     mooc-2.3-front:
       image: test-front
