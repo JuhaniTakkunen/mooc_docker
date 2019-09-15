@@ -1,0 +1,34 @@
+version: '3.5'  
+
+services: 
+    mooc-2.3-back: 
+      image: test-back
+      ports: 
+        - 8000:8000
+      volumes: 
+        - ${PWD}/logs.txt:/usr/local/www/backend/logs.txt
+      environment:
+        - REDIS=redis
+        - REDIS_PORT=6379
+        - DB_USERNAME=testeri
+        - DB_PASSWORD=example
+        - DB_HOST=db
+        - FRONT_URL=http://localhost:5000
+      restart: unless-stopped
+
+    redis: 
+      image: redis:alpine
+
+    db:
+      image: postgres
+      restart: unless-stopped
+      environment:
+        - POSTGRES_PASSWORD=example
+        - POSTGRES_USER=testeri
+
+    mooc-2.3-front:
+      image: test-front
+      ports:
+        - 5000:5000
+      environment:
+        - API_URL=http://localhost:8000
