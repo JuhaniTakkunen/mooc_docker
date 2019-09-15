@@ -1,0 +1,23 @@
+version: '3.5'
+
+services:
+    mooc-2.3-back:
+      image: test-back
+      ports:
+        - 8000:8000
+      volumes:
+        - ${PWD}/logs.txt:/usr/local/www/backend/logs.txt
+      environment:
+        - REDIS=redis
+        - REDIS_PORT=6379
+      restart: unless-stopped
+
+    redis:
+      image: redis:alpine
+
+    mooc-2.3-front:
+      image: test-front
+      ports:
+        - 5000:5000
+
+
