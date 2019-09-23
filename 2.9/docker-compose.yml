@@ -1,0 +1,43 @@
+version: '3.5'
+
+services:
+    back:
+      image: test-back
+
+      volumes:
+        - ${PWD}/logs.txt:/usr/local/www/backend/logs.txt
+      environment:
+        - REDIS=redis
+        - REDIS_PORT=6379
+        - DB_USERNAME=testeri
+        - DB_PASSWORD=example
+        - DB_HOST=db
+        - FRONT_URL='/front'
+      restart: unless-stopped
+
+    redis:
+      image: redis:alpine
+
+    db:
+      image: postgres
+      restart: unless-stopped
+      environment:
+        - POSTGRES_PASSWORD=example
+        - POSTGRES_USER=testeri
+      volumes:
+        - ./database_pg2:/var/lib/postgresql/data
+      container_name: postgres_db
+
+    front:
+      image: test-front
+
+      environment:
+        - API_URL='/api'
+
+    nginx:
+      image: nginx
+      volumes:
+        - ./nginx.conf:/etc/nginx/nginx.conf
+      ports:
+        - 80:80
+
