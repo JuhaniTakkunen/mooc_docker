@@ -1,0 +1,48 @@
+FROM ubuntu:16.04
+
+# Install Node
+RUN apt-get update && apt-get install -y curl && \
+    curl -sL https://deb.nodesource.com/setup_10.x | bash && \
+    apt-get install -y nodejs && \
+    apt-get purge -y --auto-remove curl && \
+    rm -rf /var/lib/apt/lists/*
+# Verify installation
+RUN bash -c 'echo node -v && npm -v'
+
+# Copy GIT-project
+COPY backend-example-docker /usr/local/www/backend
+WORKDIR /usr/local/www/backend
+
+# Install NPM packages
+RUN npm install
+
+EXPOSE 8000
+ENV FRONT_URL=http://localhost:8000
+CMD ["npm", "start"]
+root@warhol-VirtualBox:/home/warhol/mooc/3.1b# cd ..
+root@warhol-VirtualBox:/home/warhol/mooc# cd 3.1
+root@warhol-VirtualBox:/home/warhol/mooc/3.1# cat Dockerfile 
+FROM ubuntu:16.04 
+
+ENV API_URL=/api
+
+# Download and install Node and cleanup after
+RUN apt-get update && apt-get install -y curl && \
+    curl -sL https://deb.nodesource.com/setup_10.x | bash && \
+    apt-get purge -y --auto-remove curl && \ 
+    apt-get install -y nodejs && \
+    rm -rf /var/lib/apt/lists/* 
+
+# Ensure node is working
+RUN bash -c 'echo node -v && npm -v'
+
+COPY frontend-example-docker /usr/local/www
+WORKDIR /usr/local/www
+
+RUN npm install
+RUN npm install -g serve
+RUN npm run build
+
+EXPOSE 5000
+
+CMD ["serve", "-s", "-l", "5000", "dist"]
