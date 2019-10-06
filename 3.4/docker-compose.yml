@@ -12,7 +12,7 @@ services:
         - DB_USERNAME=testeri
         - DB_PASSWORD=example
         - DB_HOST=db
-        - FRONT_URL='/front'
+        - FRONT_URL=http://localhost
       restart: unless-stopped
 
     redis: 
@@ -30,9 +30,8 @@ services:
 
     front:
       image: front
-
       environment:
-        - API_URL='/api'
+        - API_URL=http://localhost/api
 
     nginx:
       image: nginx
@@ -40,3 +39,7 @@ services:
         - ./nginx.conf:/etc/nginx/nginx.conf
       ports:
         - 80:80
+      depends_on:
+        - front
+        - back
+
